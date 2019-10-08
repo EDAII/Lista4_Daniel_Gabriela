@@ -211,7 +211,7 @@ def heap_sort(rectangles, background):
         aux = rectangles.set_rectangles[i]
         rectangles.set_rectangles[i] = rectangles.set_rectangles[0]
         rectangles.set_rectangles[0] = aux
-        rectangles[i].rectangles.set_rectangles[i].color = GREEN
+        rectangles.set_rectangles[i].color = GREEN
         rectangles.update_set_rectangles_in_screen_animation(
             background, WAIT_HEAP_SORT)
         heapify(rectangles.set_rectangles, i, 0)
