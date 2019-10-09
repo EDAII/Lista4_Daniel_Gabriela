@@ -9,7 +9,7 @@
 
 ## Installation
 
-> * ``` git clone https://github.com/EDAII/Lista2_Daniel_Gabriela.git ``` <br> <br>
+> * ``` git clone https://github.com/EDAII/Lista4_Daniel_Gabriela.git ``` <br> <br>
 > * ``` pip3 install -r requirements.txt --user ```
 
 ## Execution
