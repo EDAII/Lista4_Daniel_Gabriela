@@ -125,7 +125,7 @@ class Game():
             text(self.background, "(i) Insertion Sort", ORANGE, 25, 1042, 80)
             text(self.background, "(b) Bubble Sort", ORANGE, 25, 1042, 110)
             text(self.background, "(h) Heap Sort", ORANGE, 25, 1042, 140)
-            text(self.background, "(x) Radix Sort", ORANGE, 25, 1042, 170)
+            text(self.background, "(x) Radix Sort LSD", ORANGE, 25, 1042, 170)
             text(self.background, "(r) Retry", ORANGE, 25, 1042, 200)
 
     def run(self):
@@ -168,7 +168,7 @@ class Game():
                             print("chamou radix sort")
                             self.stoped = False
                             radix_sort_lsd(self.rectangles,
-                                      self.background, self.random_heights)
+                                           self.background, self.random_heights)
                             self.stoped = True
                         if event.key == pygame.K_r:
                             main()
@@ -184,19 +184,24 @@ def selection_sort(rectangles, background):
     for i in range(len(rectangles.set_rectangles)):
         min_index = i
 
-        rectangles.set_rectangles[min_index].update_rectangle_in_screen_animation(RED, background, WAIT_SELECTION_SORT)
+        rectangles.set_rectangles[min_index].update_rectangle_in_screen_animation(
+            RED, background, WAIT_SELECTION_SORT)
 
         for j in range(i + 1, len(rectangles.set_rectangles)):
 
             if j > 0 and rectangles.set_rectangles[j - 1].color == BLUE:
-                rectangles.set_rectangles[j - 1].update_rectangle_in_screen_animation(WHITE, background, WAIT_SELECTION_SORT)
-    
-            rectangles.set_rectangles[j].update_rectangle_in_screen_animation(BLUE, background, WAIT_SELECTION_SORT)
+                rectangles.set_rectangles[j - 1].update_rectangle_in_screen_animation(
+                    WHITE, background, WAIT_SELECTION_SORT)
+
+            rectangles.set_rectangles[j].update_rectangle_in_screen_animation(
+                BLUE, background, WAIT_SELECTION_SORT)
 
             if rectangles.set_rectangles[j].height < rectangles.set_rectangles[min_index].height:
 
-                rectangles.set_rectangles[min_index].update_rectangle_in_screen_animation(WHITE, background, WAIT_SELECTION_SORT)
-                rectangles.set_rectangles[j].update_rectangle_in_screen_animation(RED, background, WAIT_SELECTION_SORT)
+                rectangles.set_rectangles[min_index].update_rectangle_in_screen_animation(
+                    WHITE, background, WAIT_SELECTION_SORT)
+                rectangles.set_rectangles[j].update_rectangle_in_screen_animation(
+                    RED, background, WAIT_SELECTION_SORT)
 
                 min_index = j
 
@@ -205,11 +210,13 @@ def selection_sort(rectangles, background):
         rectangles.set_rectangles[min_index] = aux_rectangle
 
         if rectangles.set_rectangles[len(rectangles.set_rectangles) - 1].color == BLUE:
-            rectangles.set_rectangles[len(rectangles.set_rectangles) - 1].color = WHITE
+            rectangles.set_rectangles[len(
+                rectangles.set_rectangles) - 1].color = WHITE
 
         rectangles.set_rectangles[i].color = GREEN
-        
-        rectangles.update_set_rectangles_in_screen_animation(background, WAIT_SELECTION_SORT)
+
+        rectangles.update_set_rectangles_in_screen_animation(
+            background, WAIT_SELECTION_SORT)
 
 
 # Insertion Sort
@@ -347,13 +354,15 @@ def heap_sort(rectangles, background):
             aux = array[index]
 
             largestOriginalColor = array[largest].color
-            indexOriginalColor =  array[index].color
-            
+            indexOriginalColor = array[index].color
+
             array[index] = array[largest]
-            array[index].update_rectangle_in_screen_animation(indexOriginalColor, background, WAIT_HEAP_SORT)
+            array[index].update_rectangle_in_screen_animation(
+                indexOriginalColor, background, WAIT_HEAP_SORT)
 
             array[largest] = aux
-            array[largest].update_rectangle_in_screen_animation(largestOriginalColor, background, WAIT_HEAP_SORT)
+            array[largest].update_rectangle_in_screen_animation(
+                largestOriginalColor, background, WAIT_HEAP_SORT)
 
             # rectangles.set_rectangles[index].color = WHITE
             # rectangles.set_rectangles[largest].color = WHITE
@@ -371,34 +380,41 @@ def heap_sort(rectangles, background):
             if(k >= size):
                 break
             elif(j == 1):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(RED, background, WAIT_HEAP_SORT) 
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    RED, background, WAIT_HEAP_SORT)
             elif(j == 2):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(ORANGE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    ORANGE, background, WAIT_HEAP_SORT)
             elif(j == 4):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(INTERMEDIARYORANGE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    INTERMEDIARYORANGE, background, WAIT_HEAP_SORT)
             elif(j == 8):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(LIGHTORANGE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    LIGHTORANGE, background, WAIT_HEAP_SORT)
             elif(j == 16):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(LIGHTBLUE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    LIGHTBLUE, background, WAIT_HEAP_SORT)
             elif(j == 32):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(BLUE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    BLUE, background, WAIT_HEAP_SORT)
             elif(j == 64):
-                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(DARKBLUE, background, WAIT_HEAP_SORT)
+                rectangles.set_rectangles[k].update_rectangle_in_screen_animation(
+                    DARKBLUE, background, WAIT_HEAP_SORT)
 
         count += j
         j *= 2
 
-
     for i in range(size, -1, -1):
-        heapify(rectangles.set_rectangles, size, i)    
+        heapify(rectangles.set_rectangles, size, i)
 
     for i in range(size - 1, 0, - 1):
 
         aux = rectangles.set_rectangles[i]
         rectangles.set_rectangles[i] = rectangles.set_rectangles[0]
-        
+
         rectangles.set_rectangles[0] = aux
-        rectangles.set_rectangles[0].update_rectangle_in_screen_animation(rectangles.set_rectangles[i].color, background, WAIT_HEAP_SORT)
+        rectangles.set_rectangles[0].update_rectangle_in_screen_animation(
+            rectangles.set_rectangles[i].color, background, WAIT_HEAP_SORT)
 
         rectangles.set_rectangles[i].color = GREEN
 
@@ -421,18 +437,17 @@ def counting_sort(rectangles, dig, background):
 
         if(i > 0):
             rectangles.set_rectangles[i - 1].update_rectangle_in_screen_animation(
-            WHITE, background, WAIT_RADIX_SORT)
+                WHITE, background, WAIT_RADIX_SORT)
 
         index = rectangles.set_rectangles[i].height//dig
         count[int((index) % 10)] += 1
 
         rectangles.set_rectangles[i].update_rectangle_in_screen_animation(
             BLUE, background, WAIT_RADIX_SORT)
-    
+
     rectangles.set_rectangles[n - 1].update_rectangle_in_screen_animation(
-            WHITE, background, WAIT_RADIX_SORT)
-    
-    
+        WHITE, background, WAIT_RADIX_SORT)
+
     for i in range(1, 10):
         count[i] += count[i-1]
 
@@ -460,7 +475,7 @@ def radix_sort_lsd(rectangles, background, random_heights):
     while bigger//dig > 0:
         counting_sort(rectangles, dig, background)
         dig *= 10
-    
+
     for i in range(len(rectangles.set_rectangles)):
         rectangles.set_rectangles[i].update_rectangle_in_screen_animation(
             GREEN, background, WAIT_RADIX_SORT)
